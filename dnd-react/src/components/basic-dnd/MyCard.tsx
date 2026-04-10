@@ -26,8 +26,6 @@ const MyCard = ({ className, children }: MyCardProps) => {
       {...attributes}
       style={style}
       className={cn("w-32 h-32", className)}
-      role="button"
-      tabIndex={0}
     >
       <CardHeader className="border-b">Drop: {children}</CardHeader>
     </Card>
