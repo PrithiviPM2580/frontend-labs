@@ -5,7 +5,9 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <AppRoute />
+      <main className="pt-16">
+        <AppRoute />
+      </main>
     </>
   );
 };
