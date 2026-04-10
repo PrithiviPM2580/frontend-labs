@@ -1,7 +1,7 @@
-import React from "react";
+import BasicDragDrop from "@/components/basic-dnd/BasicDragDrop";
 
 const DndKitBasic = () => {
-  return <div>DndKitBasic</div>;
+  return <BasicDragDrop />;
 };
 
 export default DndKitBasic;
