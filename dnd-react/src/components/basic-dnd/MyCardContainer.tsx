@@ -8,7 +8,7 @@ interface MyCardContainerProps {
 
 const MyCardContainer = ({ className, children }: MyCardContainerProps) => {
   return (
-    <Card className={cn("border-t w-48 h-48", className)}>
+    <Card className={cn("border-t w-64 h-80", className)}>
       <CardHeader>Drop Here!</CardHeader>
       <CardContent className="border-t py-2">{children}</CardContent>
     </Card>
