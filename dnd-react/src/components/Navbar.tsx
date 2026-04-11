@@ -69,6 +69,18 @@ const Navbar = () => {
           >
             Level1
           </NavLink>
+          <NavLink
+            to="/level2"
+            className={({ isActive }) =>
+              `rounded-md px-3 py-2 text-sm transition-colors ${
+                isActive
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-muted"
+              }`
+            }
+          >
+            Level2
+          </NavLink>
         </div>
       </div>
     </nav>
