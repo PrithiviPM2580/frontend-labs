@@ -2,12 +2,13 @@ import { DRAGABBLE_GRID_ITEMS, type DraggableGridItem } from "@/constants";
 import { cn } from "@/lib/utils";
 import { closestCenter, DndContext, type DragEndEvent } from "@dnd-kit/core";
 import {
+  arrayMove,
   rectSortingStrategy,
   SortableContext,
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Level3 = () => {
   return (
@@ -19,7 +20,22 @@ const Level3 = () => {
 
 function DragAndDrop() {
   const [items, setItems] = useState<DraggableGridItem[]>(DRAGABBLE_GRID_ITEMS);
-  function handleDragEnd(event: DragEndEvent) {}
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (!over) return;
+
+    if (active.id !== over.id) {
+      setItems((prevItems) => {
+        const oldIndex = prevItems.findIndex((item) => item.id === active.id);
+        const newIndex = prevItems.findIndex((item) => item.id === over.id);
+
+        if (oldIndex < 0 || newIndex < 0) return prevItems;
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items} strategy={rectSortingStrategy}>
@@ -43,6 +59,8 @@ function SortableItem({ item }: { item: DraggableGridItem }) {
   return (
     <div
       ref={setNodeRef}
+      {...listeners}
+      {...attributes}
       style={style}
       className={cn(
         "h-full w-full py-8 rounded-lg text-center text-white font-bold text-base cursor-grab active:cursor-grabbing",
