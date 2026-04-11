@@ -32,7 +32,7 @@ function DragAndDrop() {
 
         if (oldIndex < 0 || newIndex < 0) return prevItems;
 
-        return arrayMove(items, oldIndex, newIndex);
+        return arrayMove(prevItems, oldIndex, newIndex);
       });
     }
   }
